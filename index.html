@@ -148,15 +148,30 @@
                         <i class="fas fa-city icon"></i> Nominal de brechas
                         <a href="" target="_blank" class="btn btn-link float-right" style="padding: 0;"><i class="fas fa-external-link-alt"></i></a>
                     </li>
+                    
+                    <!--
+
                     <li id="report-2" onclick="toggleReport(2)" data-link="https://sites.google.com/view/registrodeavance-clte/avance ">
                         <i class="fas fa-users icon"></i> Gestión de brechas 
                         <a href="" target="_blank" class="btn btn-link float-right" style="padding: 0;"><i class="fas fa-external-link-alt"></i></a>
                     </li>
+
+                    -->
+                    
+
+                    <li id="report-2">
+                        <a href="https://sites.google.com/view/registrodeavance-clte/avance" target="_blank" style="color: inherit; text-decoration: none; display: block; padding: 0;">
+                            <i class="fas fa-users icon"></i> Gestión de brechas 
+                            <span class="float-right"><i class="fas fa-external-link-alt"></i></span>
+                        </a>
+                    </li>  
+
+
                     <li id="report-3" onclick="toggleReport(3)" data-link="http://localhost:8501/">
                         <i class="fas fa-stamp icon"></i> Validación de TXT 
                         <a href="" target="_blank" class="btn btn-link float-right" style="padding: 0;"><i class="fas fa-external-link-alt"></i></a>
                     </li>
-                 
+
                 </ul>
             </div>
  
@@ -169,9 +184,11 @@
                         <div class="carousel-item">
                             <iframe src=  "https://docs.google.com/spreadsheets/d/1qsnTtcRhzJ9vZoz02MXRINKSAGcvP9LPAYESNb81L8M/edit?usp=sharingD" width="95%" height="780px"></iframe>
                         </div>
+                        <!--
                         <div class="carousel-item">
                             <iframe src="https://sites.google.com/view/registrodeavance-clte/avance " width="95%" height="780"></iframe>
-                        </div>
+                        </div> 
+                        -->
                         <div class="carousel-item">
                             <iframe src="http://localhost:8501/" width="95%" height="780px"></iframe>
                         </div>
@@ -193,29 +210,47 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
+    <!-- <script>
         function toggleReport(reportIndex) {
             $('.carousel-item').removeClass('active');
             $('.carousel-item').eq(reportIndex).addClass('active');
             $('.report-list li').removeClass('active');
             $('.report-list li').eq(reportIndex).addClass('active');
         }
+    </script> -->
+
+
+    <script>
+        function toggleReport(reportIndex) {
+        if(reportIndex !== 2) { 
+            var iframeIndex = reportIndex > 2 ? reportIndex - 1 : reportIndex;
+            
+            $('.carousel-item').removeClass('active');
+            $('.carousel-item').eq(iframeIndex).addClass('active');
+            $('.report-list li').removeClass('active');
+            $('.report-list li[id^="report-"]').eq(reportIndex).addClass('active');
+        }
+    }
+
+
     </script>
 
+    
+     
+
+    
     <script>
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault(); 
         });
     </script>
 
-
+    
     <script>
         document.addEventListener('keydown', function(e) {
-            // Bloquea F12
-            if (e.key === "F12") {
+             if (e.key === "F12") {
                 e.preventDefault();
             }
-            // Bloquea Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
             if ((e.ctrlKey && e.shiftKey && ['I', 'J'].includes(e.key)) || (e.ctrlKey && e.shiftKey && ['i', 'j'].includes(e.key)) ||
                 (e.ctrlKey && e.key === 'U') || (e.ctrlKey && e.key === 'u') ||
                 (e.ctrlKey && e.key === 'S') || (e.ctrlKey && e.key === 's')){
